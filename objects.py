@@ -1,8 +1,9 @@
 #objects###########
 
 from pygame import image,Rect
+from utils import pathify
 class Character:
-    def __init__(self, x=50, y=8, img=r'./Data/img/characters/Good/12x16/yola.png'):
+    def __init__(self, x=50, y=8, img=pathify('./Data/img/characters/Good/12x16/yola.png')):
         self.img = image.load(img)
         self.img.set_colorkey((255, 255, 255))
         self.posx = x
@@ -51,19 +52,19 @@ class Character:
 class Tiles:
     # images
     dirt1 = image.load(
-        r'./Data/img/tiles/16x16/dirt_0.png')
+        pathify('./Data/img/tiles/16x16/dirt_0.png'))
     dirt2 = image.load(
-        r'./Data/img/tiles/16x16/dirt_1.png')
+        pathify('./Data/img/tiles/16x16/dirt_1.png'))
     grass = image.load(
-        r'./Data/img/tiles/16x16/grass_0.png')
+        pathify('./Data/img/tiles/16x16/grass_0.png'))
     right_grass = image.load(
-        r'./Data/img/tiles/16x16/grass_r.png')
+        pathify('./Data/img/tiles/16x16/grass_r.png'))
     left_grass = image.load(
-        r'./Data/img/tiles/16x16/grass_l.png')
+        pathify('./Data/img/tiles/16x16/grass_l.png'))
     tp_right_grass = image.load(
-        r'./Data/img/tiles/12x12/grass_tp_r.png')
+        pathify('./Data/img/tiles/12x12/grass_tp_r.png'))
     tp_left_grass = image.load(
-        r'./Data/img/tiles/12x12/grass_tp_l.png')
+        pathify('./Data/img/tiles/12x12/grass_tp_l.png'))
     # size
     TILE_SIZE = grass.get_width()
 

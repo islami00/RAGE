@@ -13,7 +13,7 @@ window = display
 
 surface = window.set_mode(WINDOW_SIZE)
 window.set_caption('Scorf')
-
+# Init empty surface to scale from
 disp = Surface(NEW_WINDOW_SIZE)
 
 # CLASSES
@@ -130,7 +130,9 @@ while run:
     for e in event.get():
         if e.type == QUIT:
             run = False
+        # controller logic
 
+        ### Motion triggers
         if e.type == KEYDOWN:
             if e.key == K_RIGHT:
                 moving_right = True
@@ -140,19 +142,21 @@ while run:
                 air_timer += 1
                 if air_timer <= 2:
                     y_momentum = -6
-
+        ### settings
             if e.key == K_F11:
                 window.toggle_fullscreen()
-
+        ### Stop motion
         if e.type == KEYUP:
             if e.key == K_RIGHT:
                 moving_right = False
             if e.key == K_LEFT:
                 moving_left = False
             if e.key == K_UP:
+                # let gravity do its job if up key no longer pressed
                 pass
 
     surf = transform.scale(disp, WINDOW_SIZE)
+    # Place surf on the surface at 0,0.
     surface.blit(surf, (0, 0))
 
     clock.tick(60)
