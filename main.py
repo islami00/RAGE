@@ -1,10 +1,10 @@
 from pygame import Rect, Surface, display, draw, event, image, transform
 from pygame.constants import K_F11, K_w, QUIT, KEYDOWN, KEYUP, K_LEFT, K_RIGHT, K_UP
 from pygame.time import Clock
-from map_loader import*
+from map_loader import *
 from objects import *
 from funcs import *
-from constants import*
+from constants import *
 from utils import pathify
 
 clock = Clock()
@@ -18,10 +18,9 @@ disp = Surface(NEW_WINDOW_SIZE)
 
 # CLASSES
 
-#objects and constants
+# objects and constants
 yola = Character()
 yols_rect = yola.rect()
-
 
 yols_action = 'idle'
 animation_database = Animation().database()
@@ -35,9 +34,7 @@ moving_right = False
 y_momentum = 0
 air_timer = 0
 
-
 scroll = Scroll.true_scroll
-
 
 run = True
 while run:
@@ -46,14 +43,14 @@ while run:
     scroll[0] = Scroll(yols_rect).scroll_x()
     scroll[1] = Scroll(yols_rect).scroll_y()
 
-    check_point = Rect(1994-scroll[0], 152-scroll[1], 16, 38)
+    check_point = Rect(1994 - scroll[0], 152 - scroll[1], 16, 38)
 
     disp.blit(Background().load(pathify('./Data/img/bg/day_mounts.png')),
-              (0-scroll[0]/30.00, 0-scroll[1]/30.0))
+              (0 - scroll[0] / 30.00, 0 - scroll[1] / 30.0))
 
     draw.rect(disp, (9, 91, 85), check_point)
 
-    if scroll[1] <= NEW_SCREEN_HEIGHT/15:
+    if scroll[1] <= NEW_SCREEN_HEIGHT / 15:
         scroll[1] += 2
 
     # world creation
@@ -65,20 +62,20 @@ while run:
         for tile in row:
             if tile == '1':
                 disp.blit(
-                    Tiles.grass, (x*Tiles.TILE_SIZE-scroll[0], y*Tiles.TILE_SIZE-scroll[1]))
+                    Tiles.grass, (x * Tiles.TILE_SIZE - scroll[0], y * Tiles.TILE_SIZE - scroll[1]))
             if tile == '2':
                 disp.blit(
-                    Tiles.dirt1, (x*Tiles.TILE_SIZE-scroll[0], y*Tiles.TILE_SIZE-scroll[1]))
+                    Tiles.dirt1, (x * Tiles.TILE_SIZE - scroll[0], y * Tiles.TILE_SIZE - scroll[1]))
             if tile == 'L':
                 disp.blit(
-                    Tiles.left_grass, (x*Tiles.TILE_SIZE-scroll[0], y*Tiles.TILE_SIZE-scroll[1]))
+                    Tiles.left_grass, (x * Tiles.TILE_SIZE - scroll[0], y * Tiles.TILE_SIZE - scroll[1]))
 
             if tile == 'R':
                 disp.blit(
-                    Tiles.right_grass, (x*Tiles.TILE_SIZE-scroll[0], y*Tiles.TILE_SIZE-scroll[1]))
+                    Tiles.right_grass, (x * Tiles.TILE_SIZE - scroll[0], y * Tiles.TILE_SIZE - scroll[1]))
 
             if tile != '0':
-                tile_rects.append(Rect(x*Tiles.TILE_SIZE, y*Tiles.TILE_SIZE,
+                tile_rects.append(Rect(x * Tiles.TILE_SIZE, y * Tiles.TILE_SIZE,
                                        Tiles.TILE_SIZE, Tiles.TILE_SIZE))
             x += 1
         y += 1
@@ -121,7 +118,7 @@ while run:
     yola.img = animation_frames[yols_img_id]
 
     disp.blit(transform.flip(yola.img, yols_flip, False),
-              (yols_rect.x-scroll[0], yols_rect.y-scroll[1]))
+              (yols_rect.x - scroll[0], yols_rect.y - scroll[1]))
 
     Fail(yols_rect, 'You have failed', scroll, player_movement)
 
@@ -132,7 +129,7 @@ while run:
             run = False
         # controller logic
 
-        ### Motion triggers
+        # Motion triggers
         if e.type == KEYDOWN:
             if e.key == K_RIGHT:
                 moving_right = True
@@ -142,10 +139,10 @@ while run:
                 air_timer += 1
                 if air_timer <= 2:
                     y_momentum = -6
-        ### settings
+            # settings
             if e.key == K_F11:
                 window.toggle_fullscreen()
-        ### Stop motion
+        # Stop motion
         if e.type == KEYUP:
             if e.key == K_RIGHT:
                 moving_right = False
