@@ -4,7 +4,7 @@ from pygame import draw
 from pygame.constants import KEYDOWN, KEYUP, K_UP, QUIT, K_LEFT, K_RIGHT
 from map_loader import game_map
 from pygame.time import Clock
-
+from utils import pathify
 
 clock = Clock()
 SCREEN_WIDTH = 1000
@@ -20,8 +20,8 @@ surface = window.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 _display = Surface((NEW_SCREEN_WIDTH, NEW_SCREEN_HEIGHT))
 
-grass = image.load(r'./img/tiles/12x12/grass_0.png')
-dirt = image.load(r'./img/tiles/12x12/dirt_0.png')
+grass = image.load(pathify('./img/tiles/12x12/grass_0.png'))
+dirt = image.load(pathify('./img/tiles/12x12/dirt_0.png'))
 
 
 TILE_SIZE = grass.get_width()
@@ -29,7 +29,7 @@ TILE_SIZE = grass.get_width()
 
 
 class Character(Rect, sprite.Sprite):
-    def __init__(self, img=r'./img/tiles/12x12/grass_0.png', x=100, y=8) -> Rect:
+    def __init__(self, img=pathify('./img/tiles/12x12/grass_0.png'), x=100, y=8) -> Rect:
         self.img = image.load(img)
         self.img.set_colorkey((255, 255, 255))
         self.height = self.img.get_height()

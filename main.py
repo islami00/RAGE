@@ -5,6 +5,7 @@ from map_loader import*
 from objects import *
 from funcs import *
 from constants import*
+from utils import pathify
 
 clock = Clock()
 
@@ -47,7 +48,7 @@ while run:
 
     check_point = Rect(1994-scroll[0], 152-scroll[1], 16, 38)
 
-    disp.blit(Background().load(r'./Data/img/bg/day_mounts.png'),
+    disp.blit(Background().load(pathify('./Data/img/bg/day_mounts.png')),
               (0-scroll[0]/30.00, 0-scroll[1]/30.0))
 
     draw.rect(disp, (9, 91, 85), check_point)

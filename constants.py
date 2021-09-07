@@ -1,3 +1,5 @@
+import os
+pathSep = os.path.sep
 SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 600
 NEW_SCREEN_WIDTH = SCREEN_WIDTH/4

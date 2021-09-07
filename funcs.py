@@ -1,17 +1,17 @@
 from pygame import image, Rect
 from constants import*
+from utils import pathify
 #functions#########
 animation_frames = {}
 
-
 class Animation:
     def load(self, path, frame_duration):
-        animation_name = path.split('/')[-1]
+        animation_name = path.split(f'{pathSep}')[-1]
         frame_data = []
         n = 1
         for frame in frame_duration:
             animation_frame_id = animation_name + '_' + str(n)
-            img_loc = path + '/' + animation_frame_id + '.png'
+            img_loc = path + f'{pathSep}' + animation_frame_id + '.png'
             self.animation_img = image.load(img_loc)
             animation_frames[animation_frame_id] = self.animation_img.copy(
             )
@@ -26,9 +26,9 @@ class Animation:
         database = {}
 
         database['run'] = self.load(
-            r'./Data/img/characters/Good/12x16/Animation/run', [1, 2, 40])
+            pathify('./Data/img/characters/Good/12x16/Animation/run'), [1, 2, 40])
         database['idle'] = self.load(
-            r'./Data/img/characters/Good/12x16/Animation/idle', [1, 2, 40])
+            pathify('./Data/img/characters/Good/12x16/Animation/idle'), [1, 2, 40])
         return database
 
     def change_action(self, action_old, frame, new_value):

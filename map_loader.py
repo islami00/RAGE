@@ -1,9 +1,9 @@
 import os
 import os.path as path
-
+from utils import pathify
 
 class MapLoader:
-    def load_map(self,path_=r'./Data/Maps/level1.txt'):
+    def load_map(self,path_=pathify('./Data/Maps/level1.txt')):
         with open(path_,'r') as lvl1:
             _data=lvl1.read()
             data=_data.split('\n')
