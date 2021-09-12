@@ -1,5 +1,6 @@
 # Rage - BETA1
-
+A beta of the rage game developed by:
+[Mahmudumar](https://github.com/Mahmudumar) , [Me](https://github.com/islami00) and [joinedthedevil](https://github.com/Joinedthedevil)
 ## Prereq.
 
 1. A posix shell, [gitbash](https://git-scm.com/downloads)
